@@ -1,0 +1,13 @@
+build/
+tests/build/
+
+*.exe
+*.o
+*.obj
+*.a
+*.lib
+
+.vs/
+.vscode/
+*.suo
+*.users
