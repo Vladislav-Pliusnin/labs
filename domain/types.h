@@ -94,6 +94,7 @@ namespace Warehouse {
     using RobotId = uint32_t;
     using OrderId = uint32_t;
     using ProductId = uint32_t;
+    using ShelfId = uint32_t;
 
     enum class SellType {
         Empty,
