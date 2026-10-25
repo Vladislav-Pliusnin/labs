@@ -4,7 +4,7 @@
 #include <stdexcept>
 #include <string>
 
-namespace warehouse {
+namespace Warehouse {
     struct Position {
         int x, y;
         
@@ -32,7 +32,7 @@ namespace warehouse {
             }
         }
         
-        double value() {
+        double value() const {
             return amount_;
         }
 
@@ -42,7 +42,7 @@ namespace warehouse {
 
         Charge operator-(const Charge& other) const {
             if(amount_ < other.amount_) {
-                throw std::invalid_argument("Insufficient charge.");
+                throw std::runtime_error("Insufficient charge.");
             }
             return Charge(amount_ - other.amount_);
         }
@@ -67,7 +67,7 @@ namespace warehouse {
             }
         }
         
-        double value() {
+        double value() const {
             return mass_;
         }
 
@@ -77,7 +77,7 @@ namespace warehouse {
 
         Mass operator-(const Mass& other) const {
             if(mass_ < other.mass_) {
-                throw std::invalid_argument("Insufficient mass capacity.");
+                throw std::runtime_error("Insufficient mass capacity.");
             }
             return Mass(mass_ - other.mass_);
         }
@@ -117,7 +117,7 @@ namespace warehouse {
         Right
     };
 
-    inline Position MoveinDirection(const Position& pos, Direction dir) {
+    constexpr Position MoveinDirection(const Position& pos, Direction dir) {
         switch(dir) {
             case Direction::Up: return {pos.x, pos.y - 1};
             case Direction::Down: return {pos.x, pos.y + 1};
@@ -127,7 +127,7 @@ namespace warehouse {
         return pos;
     }
 
-    inline std::string OrderStatustoString(OrderStatus status) {
+    constexpr std::string OrderStatustoString(OrderStatus status) {
         switch (status) {
             case OrderStatus::New:        return "NEW";
             case OrderStatus::InProgress: return "IN_PROGRESS";

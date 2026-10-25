@@ -1,7 +1,7 @@
 #include "domain/types.h"
 #include <gtest/gtest.h>
 
-using namespace warehouse;
+using namespace Warehouse;
 
 TEST(PositionTest, Creation) {
     Position pos{5, 10};
@@ -50,7 +50,7 @@ TEST(ChargeTest, Subtraction) {
 TEST(ChargeTest, SubtractionInsufficientThrows) {
     Charge charge1(30.0);
     Charge charge2(50.0);
-    EXPECT_THROW(charge1 - charge2, std::invalid_argument);
+    EXPECT_THROW(charge1 - charge2, std::runtime_error);
 }
 
 TEST(MassTest, Creation) {
