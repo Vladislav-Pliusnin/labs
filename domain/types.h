@@ -61,7 +61,7 @@ namespace Warehouse {
         double mass_;
 
         public:
-        explicit Mass(double mass) : mass_(mass) {
+        Mass(double mass) : mass_(mass) {
             if (mass < 0.0) {
                 throw std::invalid_argument("Mass cannot be negative.\n");
             }

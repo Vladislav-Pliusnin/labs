@@ -3,7 +3,7 @@
 #include <cstdint>
 #include <stdexcept>
 #include <string>
-#include "Types.h"
+#include "types.h"
 
 namespace Warehouse {
     class Robot {
