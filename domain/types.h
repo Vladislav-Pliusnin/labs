@@ -26,7 +26,7 @@ namespace Warehouse {
         double amount_;
         
         public:
-        explicit Charge(double amount) : amount_(amount) {
+        Charge(double amount) : amount_(amount) {
             if (amount < 0.0) {
                 throw std::invalid_argument("Charge cannot be negative.\n");
             }

@@ -1,4 +1,4 @@
-#include "domain/Shelf.h"
+#include "domain/shelf.h"
 #include <gtest/gtest.h>
 
 using namespace Warehouse;

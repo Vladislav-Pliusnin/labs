@@ -1,4 +1,4 @@
-#include "domain/Robot.h"
+#include "domain/robot.h"
 #include <gtest/gtest.h>
 
 using namespace Warehouse;
