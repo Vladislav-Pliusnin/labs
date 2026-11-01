@@ -96,7 +96,7 @@ namespace Warehouse {
     using ProductId = uint32_t;
     using ShelfId = uint32_t;
 
-    enum class SellType {
+    enum class CellType {
         Empty,
         ShelfwithGoods,
         PickupPoint,
