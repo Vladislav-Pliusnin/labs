@@ -64,28 +64,28 @@ TEST(MassTest, CreationNegativeThrows) {
 
 TEST(MoveInDirectionTest, MoveUp) {
     Position pos{5, 5};
-    Position result = MoveinDirection(pos, Direction::Up);
+    Position result = moveinDirection(pos, Direction::Up);
     EXPECT_EQ(result.x, 5);
     EXPECT_EQ(result.y, 4);
 }
 
 TEST(MoveInDirectionTest, MoveDown) {
     Position pos{5, 5};
-    Position result = MoveinDirection(pos, Direction::Down);
+    Position result = moveinDirection(pos, Direction::Down);
     EXPECT_EQ(result.x, 5);
     EXPECT_EQ(result.y, 6);
 }
 
 TEST(MoveInDirectionTest, MoveLeft) {
     Position pos{5, 5};
-    Position result = MoveinDirection(pos, Direction::Left);
+    Position result = moveinDirection(pos, Direction::Left);
     EXPECT_EQ(result.x, 4);
     EXPECT_EQ(result.y, 5);
 }
 
 TEST(MoveInDirectionTest, MoveRight) {
     Position pos{5, 5};
-    Position result = MoveinDirection(pos, Direction::Right);
+    Position result = moveinDirection(pos, Direction::Right);
     EXPECT_EQ(result.x, 6);
     EXPECT_EQ(result.y, 5);
 }

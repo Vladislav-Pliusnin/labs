@@ -16,6 +16,13 @@ namespace Warehouse {
             return !(*this == other);
         }
 
+        bool operator<(const Position& other) const {
+            if (x != other.x) {
+                return x < other.x;
+            }
+            return y < other.y;
+        }
+
         int Distance(const Position& other) const {
             return std::abs(x - other.x) + std::abs(y - other.y);
         }
@@ -118,7 +125,7 @@ namespace Warehouse {
         Right
     };
 
-    constexpr Position MoveinDirection(const Position& pos, Direction dir) {
+    constexpr Position moveinDirection(const Position& pos, Direction dir) {
         switch(dir) {
             case Direction::Up: return {pos.x, pos.y - 1};
             case Direction::Down: return {pos.x, pos.y + 1};

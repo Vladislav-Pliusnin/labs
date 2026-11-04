@@ -47,7 +47,7 @@ namespace Warehouse {
                 throw std::runtime_error("Insufficient charge for movement.\n");
             }
 
-            position_ = MoveinDirection(position_, direction);
+            position_ = moveinDirection(position_, direction);
             charge_ = charge_ - cost;
         }
 

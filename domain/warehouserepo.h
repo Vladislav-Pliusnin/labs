@@ -72,7 +72,7 @@ namespace Warehouse {
             if (!inBounds(pos)) {
                 return false;
             }
-            if (grid_[pos.y][pos.x] == CellType::Shelf) {
+            if (grid_[pos.y][pos.x] == CellType::ShelfwithGoods) {
                 return false;
             }
             return !isRobotAt(pos, exclude);
@@ -86,7 +86,7 @@ namespace Warehouse {
             if (isRobotAt(robot.position())) {
                 throw std::runtime_error("Robot position occupied.\n");
             }
-            robots_[robot.id()] = std::move(robot);
+            robots_.emplace(robot.id(), std::move(robot));
         }
 
         Robot& robot(RobotId id) {
@@ -122,8 +122,8 @@ namespace Warehouse {
             if (grid_[shelf.position().y][shelf.position().x] != CellType::Empty) {
                 throw std::runtime_error("Shelf cell not empty.\n");
             }
-            grid_[shelf.position().y][shelf.position().x] = CellType::Shelf;
-            shelves_[shelf.id()] = std::move(shelf);
+            grid_[shelf.position().y][shelf.position().x] = CellType::ShelfwithGoods;
+            shelves_.emplace(shelf.id(), std::move(shelf));
         }
 
         Shelf& shelf(ShelfId id) { return at(shelves_, id, "Shelf"); }
@@ -147,7 +147,7 @@ namespace Warehouse {
                 throw std::runtime_error("Pickup cell not empty.\n");
             }
             grid_[p.position().y][p.position().x] = CellType::PickupPoint;
-            pickups_[p.id()] = std::move(p);
+            pickups_.emplace(p.id(), std::move(p));
         }
 
         PickUpPoint& pickup(uint32_t id) { return at(pickups_, id, "Pickup"); }
@@ -160,7 +160,7 @@ namespace Warehouse {
                 throw std::runtime_error("Charging cell not empty.\n");
             }
             grid_[s.position().y][s.position().x] = CellType::ChargingStation;
-            stations_[s.id()] = std::move(s);
+            stations_.emplace(s.id(), std::move(s));
         }
 
         ChargingStation& station(uint32_t id) { return at(stations_, id, "Station"); }
@@ -171,7 +171,7 @@ namespace Warehouse {
             if (!shelves_.count(order.shelfId())) {
                 throw std::runtime_error("Order references unknown shelf.\n");
             }
-            orders_[order.id()] = std::move(order);
+            orders_.emplace(order.id(), std::move(order));
         }
 
         Order& order(OrderId id) { return at(orders_, id, "Order"); }
@@ -180,7 +180,7 @@ namespace Warehouse {
 
         void moveRobot(RobotId id, Direction dir, double baseCost, double massCost) {
             auto& r = robot(id);
-            Position next = moveInDirection(r.position(), dir);
+            Position next = moveinDirection(r.position(), dir);
             if (!canMoveTo(next, id)) {
                 throw std::runtime_error("Invalid move.\n");
             }
@@ -213,7 +213,7 @@ namespace Warehouse {
             if (r.position() != s.position()) {
                 throw std::runtime_error("Robot not at charging station");
             }
-            auto amount = s.calculateChargeAmount(r.charge(), r.maxCharge());
+            auto amount = s.calculateCharge(r.charge(), r.maxCharge());
             r.charge(amount);
         }
     };
