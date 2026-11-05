@@ -13,6 +13,7 @@ namespace Warehouse {
         OrderAssigned,
         OrderCompleted,
         OrderImpossible,
+        OrderCancelled,
         RobotMoved,
         RobotLoaded,
         RobotUnloaded,
@@ -27,6 +28,7 @@ namespace Warehouse {
             case EventType::OrderAssigned:   return "ORDER_ASSIGNED";
             case EventType::OrderCompleted:  return "ORDER_COMPLETED";
             case EventType::OrderImpossible: return "ORDER_IMPOSSIBLE";
+            case EventType::OrderCancelled:  return "ORDER_CANCELLED";
             case EventType::RobotMoved:      return "ROBOT_MOVED";
             case EventType::RobotLoaded:     return "ROBOT_LOADED";
             case EventType::RobotUnloaded:   return "ROBOT_UNLOADED";
@@ -50,6 +52,7 @@ namespace Warehouse {
             if (str == "ORDER_ASSIGNED")   { return EventType::OrderAssigned; }
             if (str == "ORDER_COMPLETED")  { return EventType::OrderCompleted; }
             if (str == "ORDER_IMPOSSIBLE") { return EventType::OrderImpossible; }
+            if (str == "ORDER_CANCELLED")  { return EventType::OrderCancelled; }
             if (str == "ROBOT_MOVED")      { return EventType::RobotMoved; }
             if (str == "ROBOT_LOADED")     { return EventType::RobotLoaded; }
             if (str == "ROBOT_UNLOADED")   { return EventType::RobotUnloaded; }
